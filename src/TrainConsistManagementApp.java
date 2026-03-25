@@ -1,5 +1,22 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+class Bogie {
+    String name;
+    int capacity;
+
+    // Constructor
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    // Method to display bogie details
+    public String toString() {
+        return name + " - Capacity: " + capacity;
+    }
+}
 
 public class TrainConsistManagementApp {
 
@@ -7,19 +24,22 @@ public class TrainConsistManagementApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // Create HashMap to store bogie capacity
-        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        // Create list of Bogie objects
+        List<Bogie> passengerBogies = new ArrayList<>();
 
-        // Insert bogie-capacity pairs
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 60);
-        bogieCapacity.put("First Class", 24);
+        // Add bogies
+        passengerBogies.add(new Bogie("Sleeper", 72));
+        passengerBogies.add(new Bogie("AC Chair", 60));
+        passengerBogies.add(new Bogie("First Class", 24));
 
-        // Iterate through the map
-        System.out.println("Bogie Capacity Details:");
+        // Sort bogies based on capacity using Comparator
+        passengerBogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
+        // Display sorted bogies
+        System.out.println("Passenger Bogies Sorted by Capacity:");
+
+        for (Bogie b : passengerBogies) {
+            System.out.println(b);
         }
 
         System.out.println("Program continues...");
